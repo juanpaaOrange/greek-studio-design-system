@@ -1,0 +1,136 @@
+/* ============================================================
+   GREEK STUDIO — Design Tokens
+   "El Templo de la Belleza" · Club privado de belleza
+   ------------------------------------------------------------
+   Colors and type for a Mediterranean luxury beauty house.
+   Palette derived from the official brand guide (Identidad de
+   Marca v1.0) and refined per the hero brief.
+   RULE: never pure black (#000) or pure white (#fff).
+   The brand lives in warm marble and warm ink.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+  /* ---- CORE PALETTE (hero brief) ---------------------------- */
+  --marble-pearl:   #F3F1EF; /* primary background, light text on dark */
+  --light-taupe:    #D8D2CD; /* hairlines, dividers, soft fills */
+  --greek-sand:     #B89A7A; /* warm sand, secondary accents */
+  --champagne-gold: #A8845F; /* THE accent — use sparingly */
+  --dark-bronze:    #7A6148; /* sub-headlines, secondary text, borders */
+  --soft-charcoal:  #2E2B28; /* primary text — warm near-black */
+
+  /* ---- OFFICIAL GUIDE EXTENSIONS (compatible) -------------- */
+  --marble-light:   #FBF8F4; /* lightest marble, expansive sections */
+  --sand-deep:      #D2C0A2; /* deeper sand, VIP blocks */
+  --bronze-light:   #A9886A; /* gold hover / micro-detail */
+  --bronze-shadow:  #5C4A35; /* deep gold, text on gold */
+  --warm-coal:      #3E3830; /* warm body ink (menus, descriptions) */
+  --ink-greek:      #1A1816; /* deepest warm ink — titles only */
+
+  /* ---- SEMANTIC COLOR ROLES -------------------------------- */
+  --bg:             var(--marble-pearl);
+  --bg-raised:      var(--marble-light);
+  --bg-vip:         var(--sand-deep);
+  --fg:             var(--soft-charcoal);   /* default text */
+  --fg-muted:       var(--warm-coal);       /* body copy */
+  --fg-subtle:      var(--dark-bronze);     /* sub-headlines */
+  --accent:         var(--champagne-gold);  /* the single accent */
+  --accent-hover:   var(--bronze-light);
+  --accent-deep:    var(--bronze-shadow);
+  --hairline:       var(--light-taupe);
+  --on-accent:      var(--marble-pearl);    /* text on gold fills */
+
+  /* ---- GLASS / OVERLAYS ------------------------------------ */
+  --glass:          rgba(243, 241, 239, 0.75);
+  --glass-border:   rgba(168, 132, 95, 0.22);
+  --hero-veil:      linear-gradient(180deg, rgba(243,241,239,0.15) 0%, rgba(243,241,239,0.45) 100%);
+  --gold-glow:      0 0 0 1px rgba(168,132,95,0.18), 0 8px 30px -8px rgba(168,132,95,0.45);
+
+  /* ---- TYPE FAMILIES --------------------------------------- */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; /* editorial headings */
+  --font-body:    'Inter', -apple-system, system-ui, sans-serif;            /* body copy */
+  --font-label:   'Montserrat', 'Inter', sans-serif;                        /* eyebrows / labels / logo voice */
+
+  /* ---- TYPE SCALE (fluid) ---------------------------------- */
+  --step-hero:  clamp(3rem, 9vw, 9rem);     /* full-bleed display headline */
+  --step-h1:    clamp(2.5rem, 5.5vw, 4.5rem);
+  --step-h2:    clamp(2rem, 3.6vw, 3rem);
+  --step-h3:    clamp(1.5rem, 2.2vw, 2rem);
+  --step-lead:  clamp(1.125rem, 1.4vw, 1.375rem); /* subheadlines */
+  --step-body:  1.0625rem;
+  --step-small: 0.875rem;
+  --step-eyebrow: 0.75rem;
+
+  /* tracking */
+  --track-eyebrow: 0.32em;  /* small uppercase labels */
+  --track-label:   0.22em;
+  --track-wide:    0.14em;
+
+  /* ---- SPACING (8pt base, generous) ------------------------ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 140px;
+
+  /* ---- RADII ----------------------------------------------- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* ---- SHADOWS (warm, soft, never harsh) ------------------- */
+  --shadow-soft:  0 18px 50px -24px rgba(92, 74, 53, 0.35);
+  --shadow-glass: 0 24px 60px -28px rgba(46, 43, 40, 0.30);
+  --shadow-lift:  0 30px 70px -30px rgba(92, 74, 53, 0.45);
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-slow: 1.1s;
+  --dur-med:  0.8s;
+  --dur-fast: 0.45s;
+}
+
+/* ============================================================
+   SEMANTIC TYPE PRESETS — apply directly as classes
+   ============================================================ */
+.gs-eyebrow {
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: var(--step-eyebrow);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.gs-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-hero);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.gs-h1 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-h1); line-height: 1.0; color: var(--fg); }
+.gs-h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--step-h2); line-height: 1.08; color: var(--fg); }
+.gs-h3 { font-family: var(--font-display); font-weight: 500; font-size: var(--step-h3); line-height: 1.15; color: var(--fg); }
+.gs-serif-italic { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--fg-subtle); }
+.gs-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--step-lead);
+  line-height: 1.6;
+  color: var(--fg-subtle);
+}
+.gs-body { font-family: var(--font-body); font-weight: 400; font-size: var(--step-body); line-height: 1.7; color: var(--fg-muted); }
+.gs-label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--step-small);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--fg);
+}

@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node / build (just in case)
+node_modules/
+.cache/
+.parcel-cache/
+.next/
+dist/
+.vercel/
+
+# Working scratch
+scraps/
+
+# Local image-slot sidecars (we bake photos as real files)
+.image-slots.state.json

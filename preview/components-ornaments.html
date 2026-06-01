@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--font-body);background:var(--marble-pearl);color:var(--soft-charcoal);padding:26px 30px}
+.row{display:flex;gap:14px}
+.sw{flex:1;border-radius:14px;height:96px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+.meta{margin-top:12px}
+.nm{font-family:var(--font-label);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft-charcoal)}
+.hx{font-family:var(--font-body);font-size:12px;color:var(--dark-bronze);margin-top:3px}
+.cap{font-family:var(--font-label);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--champagne-gold);margin-bottom:18px}
+.hair{display:flex;align-items:center;gap:0;margin:8px 0}
+.hl{height:1px;flex:1;background:var(--champagne-gold);opacity:.55}
+.dia{width:7px;height:7px;background:var(--champagne-gold);transform:rotate(45deg);margin:0 10px}
+.frame{position:relative;height:90px;border:1px solid rgba(168,132,95,.5);margin-top:24px}
+.frame::before{content:'';position:absolute;inset:6px;border:1px solid rgba(168,132,95,.28)}
+.frame::after{content:'';position:absolute;left:50%;top:-4px;width:8px;height:8px;background:var(--champagne-gold);transform:translateX(-50%) rotate(45deg)}
+</style></head><body><div class="cap">Ornaments</div>
+<div class="hair"><span class="hl"></span><span class="dia"></span><span class="hl"></span></div>
+<div class="frame"></div></body></html>
