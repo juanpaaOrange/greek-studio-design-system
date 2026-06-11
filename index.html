@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Athena Reserve — Exclusive Membership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold-1: #f6e7b9;
+    --gold-2: #d4af37;
+    --gold-3: #a07c1e;
+    --gold-4: #6e5212;
+    --ink: #0b0b0e;
+    --card-w: min(640px, 92vw);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: radial-gradient(120% 90% at 50% 0%, #16161d 0%, #0b0b0e 55%, #050507 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold-1);
+    perspective: 1600px;
+  }
+
+  /* ---------- ambient particles ---------- */
+  .dust {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dust span {
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(246,231,185,.9), rgba(212,175,55,0));
+    opacity: 0;
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(20vh) scale(.4); opacity: 0; }
+    15%  { opacity: .7; }
+    85%  { opacity: .25; }
+    100% { transform: translateY(-110vh) scale(1); opacity: 0; }
+  }
+
+  /* ---------- heading ---------- */
+  header {
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeDown 1.4s cubic-bezier(.22,1,.36,1) .3s forwards;
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  header .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: .68rem;
+    letter-spacing: .55em;
+    text-indent: .55em;
+    color: rgba(246,231,185,.55);
+    text-transform: uppercase;
+    margin-bottom: .8rem;
+  }
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing: .28em;
+    text-indent: .28em;
+    background: linear-gradient(105deg, var(--gold-3) 0%, var(--gold-1) 35%, #fffbe8 50%, var(--gold-1) 65%, var(--gold-3) 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleSheen 6s ease-in-out infinite;
+  }
+  @keyframes titleSheen {
+    0%, 100% { background-position: 0% 0; }
+    50%      { background-position: 100% 0; }
+  }
+
+  /* ---------- card scene ---------- */
+  .scene {
+    z-index: 2;
+    width: var(--card-w);
+    aspect-ratio: 1.586 / 1;
+    opacity: 0;
+    animation: cardEnter 1.8s cubic-bezier(.16,1,.3,1) .8s forwards;
+  }
+  @keyframes cardEnter {
+    0%   { opacity: 0; transform: translateY(90px) rotateX(35deg) scale(.85); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) rotateX(0) scale(1); filter: blur(0); }
+  }
+
+  .card {
+    position: relative;
+    width: 100%; height: 100%;
+    border-radius: 22px;
+    transform-style: preserve-3d;
+    transition: transform .15s ease-out;
+    animation: idleFloat 7s ease-in-out 2.8s infinite;
+    cursor: pointer;
+  }
+  @keyframes idleFloat {
+    0%, 100% { transform: rotateX(0deg) rotateY(0deg) translateY(0); }
+    25%      { transform: rotateX(3.5deg) rotateY(-5deg) translateY(-8px); }
+    50%      { transform: rotateX(-2deg) rotateY(4deg) translateY(0); }
+    75%      { transform: rotateX(2.5deg) rotateY(6deg) translateY(-6px); }
+  }
+  .card.interacting { animation: none; }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    background:
+      linear-gradient(135deg, #2a2113 0%, #161208 28%, #0d0a05 60%, #1c150a 100%);
+    box-shadow:
+      0 40px 90px -20px rgba(0,0,0,.85),
+      0 18px 40px -18px rgba(160,124,30,.35),
+      inset 0 1px 0 rgba(246,231,185,.25),
+      inset 0 -1px 0 rgba(0,0,0,.6);
+  }
+
+  /* metallic brushed texture */
+  .card-face::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(94deg,
+        rgba(246,231,185,.05) 0px,
+        rgba(246,231,185,0) 2px,
+        rgba(0,0,0,.06) 4px,
+        rgba(246,231,185,0) 6px);
+    mix-blend-mode: overlay;
+  }
+
+  /* moving light sheen */
+  .sheen {
+    position: absolute;
+    inset: -40%;
+    background: linear-gradient(115deg,
+      transparent 38%,
+      rgba(246,231,185,.07) 45%,
+      rgba(255,250,225,.22) 50%,
+      rgba(246,231,185,.07) 55%,
+      transparent 62%);
+    transform: translateX(-70%) rotate(0.001deg);
+    animation: sheenSweep 5.5s cubic-bezier(.4,0,.2,1) 3.2s infinite;
+    pointer-events: none;
+    z-index: 6;
+  }
+  @keyframes sheenSweep {
+    0%       { transform: translateX(-75%); }
+    38%,100% { transform: translateX(75%); }
+  }
+
+  /* glare that follows the cursor */
+  .glare {
+    position: absolute; inset: 0;
+    z-index: 7;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%),
+      rgba(255,250,225,.14), transparent 60%);
+    opacity: 0;
+    transition: opacity .4s;
+  }
+  .card.interacting .glare { opacity: 1; }
+
+  /* gold frame + meander border */
+  .frame {
+    position: absolute;
+    inset: 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(212,175,55,.55);
+    box-shadow: inset 0 0 0 1px rgba(110,82,18,.4), inset 0 0 24px rgba(212,175,55,.08);
+    pointer-events: none;
+    z-index: 4;
+  }
+  .meander {
+    position: absolute;
+    left: 26px; right: 26px;
+    height: 14px;
+    z-index: 4;
+    color: var(--gold-2);
+    opacity: .8;
+  }
+  .meander.top { top: 22px; }
+  .meander.bottom { bottom: 22px; transform: scaleY(-1); }
+
+  /* faint guilloché / column watermark */
+  .watermark {
+    position: absolute;
+    right: -6%;
+    top: 50%;
+    width: 62%;
+    transform: translateY(-50%);
+    opacity: .07;
+    z-index: 1;
+    color: var(--gold-1);
+    animation: watermarkPulse 9s ease-in-out infinite;
+  }
+  @keyframes watermarkPulse {
+    0%, 100% { opacity: .055; }
+    50%      { opacity: .11; }
+  }
+
+  /* ---------- card content ---------- */
+  .content {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    padding: 8.5% 9%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .brand .name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.05rem, 2.6vw, 1.55rem);
+    font-weight: 600;
+    letter-spacing: .34em;
+    background: linear-gradient(100deg, var(--gold-3), var(--gold-1) 40%, #fffbe8 50%, var(--gold-1) 60%, var(--gold-3));
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleSheen 6s ease-in-out 1.2s infinite;
+  }
+  .brand .tier {
+    margin-top: .45em;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(.5rem, 1.2vw, .66rem);
+    letter-spacing: .62em;
+    color: rgba(246,231,185,.6);
+  }
+
+  /* owl emblem */
+  .emblem {
+    width: clamp(48px, 9.5vw, 72px);
+    aspect-ratio: 1;
+    color: var(--gold-2);
+    filter: drop-shadow(0 0 10px rgba(212,175,55,.35));
+    animation: emblemGlow 4.5s ease-in-out infinite;
+  }
+  @keyframes emblemGlow {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(212,175,55,.25)); }
+    50%      { filter: drop-shadow(0 0 16px rgba(212,175,55,.55)); }
+  }
+
+  /* chip */
+  .chip {
+    width: clamp(44px, 8.4vw, 62px);
+    border-radius: 9px;
+    overflow: hidden;
+    align-self: flex-start;
+    box-shadow: inset 0 1px 1px rgba(255,251,232,.7), 0 2px 6px rgba(0,0,0,.5);
+  }
+
+  .row-mid {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+  }
+
+  .number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 300;
+    font-size: clamp(.95rem, 2.6vw, 1.45rem);
+    letter-spacing: .22em;
+    color: var(--gold-1);
+    text-shadow: 0 1px 0 rgba(0,0,0,.8), 0 0 14px rgba(212,175,55,.25);
+    display: flex;
+    gap: .9em;
+  }
+  .number span {
+    opacity: 0;
+    animation: digitIn .7s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .number span:nth-child(1) { animation-delay: 2.1s; }
+  .number span:nth-child(2) { animation-delay: 2.3s; }
+  .number span:nth-child(3) { animation-delay: 2.5s; }
+  .number span:nth-child(4) { animation-delay: 2.7s; }
+  @keyframes digitIn {
+    from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .row-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .field .label {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(.42rem, 1vw, .55rem);
+    letter-spacing: .42em;
+    color: rgba(246,231,185,.45);
+    margin-bottom: .5em;
+    text-transform: uppercase;
+  }
+  .field .value {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(.72rem, 1.8vw, 1rem);
+    letter-spacing: .24em;
+    color: var(--gold-1);
+    text-shadow: 0 1px 0 rgba(0,0,0,.7);
+  }
+  .field.right { text-align: right; }
+
+  /* ---------- footer hint ---------- */
+  footer {
+    z-index: 2;
+    font-family: 'Cinzel', serif;
+    font-size: .6rem;
+    letter-spacing: .5em;
+    text-indent: .5em;
+    color: rgba(246,231,185,.35);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeDown 1.4s ease 2.4s forwards;
+  }
+
+  /* glow under the card */
+  .scene::after {
+    content: '';
+    position: absolute;
+    left: 8%; right: 8%;
+    bottom: -14%;
+    height: 16%;
+    background: radial-gradient(50% 100% at 50% 0%, rgba(212,175,55,.30), transparent 70%);
+    filter: blur(14px);
+    animation: glowPulse 7s ease-in-out 2.8s infinite;
+  }
+  .scene { position: relative; }
+  @keyframes glowPulse {
+    0%, 100% { opacity: .7; transform: scaleX(1); }
+    50%      { opacity: 1;  transform: scaleX(1.06); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition: none !important; }
+    header, .scene, footer, .number span { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="dust" id="dust"></div>
+
+  <header>
+    <p class="eyebrow">By invitation only</p>
+    <h1>Athena Reserve</h1>
+  </header>
+
+  <div class="scene">
+    <div class="card" id="card">
+      <div class="card-face">
+
+        <!-- watermark: Athena profile / ionic column -->
+        <svg class="watermark" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="100" cy="100" r="78"/>
+          <circle cx="100" cy="100" r="64"/>
+          <!-- laurel wreath -->
+          <g stroke-width="1.4">
+            <path d="M52 150 Q40 110 52 70"/>
+            <path d="M148 150 Q160 110 148 70"/>
+            <path d="M50 130 q-12 -4 -14 -16 q14 2 14 16Z"/>
+            <path d="M48 108 q-12 -4 -14 -16 q14 2 14 16Z"/>
+            <path d="M49 86  q-12 -4 -14 -16 q14 2 14 16Z"/>
+            <path d="M150 130 q12 -4 14 -16 q-14 2 -14 16Z"/>
+            <path d="M152 108 q12 -4 14 -16 q-14 2 -14 16Z"/>
+            <path d="M151 86  q12 -4 14 -16 q-14 2 -14 16Z"/>
+          </g>
+          <!-- ionic column -->
+          <g stroke-width="1.6">
+            <path d="M78 132 h44 M82 126 h36"/>
+            <path d="M86 126 v-44 M94 126 v-44 M102 126 v-44 M110 126 v-44 M118 126 v-44 M114 126"/>
+            <path d="M80 82 h40"/>
+            <path d="M80 82 a8 8 0 1 1 -2 -10 M120 82 a8 8 0 1 0 2 -10"/>
+          </g>
+        </svg>
+
+        <!-- greek meander borders -->
+        <svg class="meander top" viewBox="0 0 580 14" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.1">
+          <defs>
+            <pattern id="key" width="22" height="14" patternUnits="userSpaceOnUse">
+              <path d="M0 13 V2 H18 V10 H7 V6 H13" />
+            </pattern>
+          </defs>
+          <rect width="580" height="14" fill="url(#key)" stroke="none"/>
+        </svg>
+        <svg class="meander bottom" viewBox="0 0 580 14" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.1">
+          <rect width="580" height="14" fill="url(#key)" stroke="none"/>
+        </svg>
+
+        <div class="frame"></div>
+
+        <div class="content">
+          <div class="row-top">
+            <div class="brand">
+              <div class="name">ATHENA RESERVE</div>
+              <div class="tier">AUREUM&nbsp;MEMBER</div>
+            </div>
+            <!-- owl of Athena emblem -->
+            <svg class="emblem" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="29" stroke-width="1.2"/>
+              <path d="M18 24 q-3 -8 4 -10 q2 5 8 5 h4 q6 0 8 -5 q7 2 4 10"/>
+              <path d="M18 24 q-4 12 4 22 q6 6 10 6 q4 0 10 -6 q8 -10 4 -22"/>
+              <circle cx="25" cy="28" r="4.5"/>
+              <circle cx="39" cy="28" r="4.5"/>
+              <circle cx="25" cy="28" r="1.4" fill="currentColor"/>
+              <circle cx="39" cy="28" r="1.4" fill="currentColor"/>
+              <path d="M32 31 l-2.4 4 h4.8 Z"/>
+              <path d="M26 44 q6 4 12 0"/>
+            </svg>
+          </div>
+
+          <div class="row-mid">
+            <svg class="chip" viewBox="0 0 60 44">
+              <defs>
+                <linearGradient id="chipGold" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#f6e7b9"/>
+                  <stop offset=".45" stop-color="#d4af37"/>
+                  <stop offset=".75" stop-color="#a07c1e"/>
+                  <stop offset="1" stop-color="#e8cf86"/>
+                </linearGradient>
+              </defs>
+              <rect width="60" height="44" rx="8" fill="url(#chipGold)"/>
+              <g stroke="#6e5212" stroke-width="1.4" fill="none">
+                <path d="M0 15 h18 v14 h-18 M60 15 h-18 v14 h18"/>
+                <path d="M18 15 v-15 M42 15 v-15 M18 29 v15 M42 29 v15"/>
+                <rect x="22" y="12" width="16" height="20" rx="4"/>
+              </g>
+            </svg>
+            <div class="number" aria-label="member number">
+              <span>0042</span><span>ΑΘΗΝΑ</span><span>1987</span><span>XXVI</span>
+            </div>
+          </div>
+
+          <div class="row-bottom">
+            <div class="field">
+              <div class="label">Member</div>
+              <div class="value">I.&nbsp;PAPADOPOULOS</div>
+            </div>
+            <div class="field">
+              <div class="label">Since</div>
+              <div class="value">MMXXVI</div>
+            </div>
+            <div class="field right">
+              <div class="label">Valid Thru</div>
+              <div class="value">&infin;&nbsp;AETERNUM</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sheen"></div>
+        <div class="glare" id="glare"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Mueve el cursor sobre la tarjeta</footer>
+
+<script>
+  // ---- 3D tilt on pointer ----
+  const card = document.getElementById('card');
+  const glare = document.getElementById('glare');
+  const MAX_TILT = 12;
+
+  card.addEventListener('pointermove', (e) => {
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    const rx = (0.5 - py) * MAX_TILT * 2;
+    const ry = (px - 0.5) * MAX_TILT * 2;
+    card.classList.add('interacting');
+    card.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-6px) scale(1.02)`;
+    glare.style.setProperty('--gx', `${(px * 100).toFixed(1)}%`);
+    glare.style.setProperty('--gy', `${(py * 100).toFixed(1)}%`);
+  });
+
+  card.addEventListener('pointerleave', () => {
+    card.style.transform = '';
+    card.classList.remove('interacting');
+  });
+
+  // ---- floating gold dust ----
+  const dust = document.getElementById('dust');
+  for (let i = 0; i < 36; i++) {
+    const s = document.createElement('span');
+    s.style.left = `${Math.random() * 100}%`;
+    s.style.bottom = `-${Math.random() * 10}vh`;
+    s.style.animationDuration = `${9 + Math.random() * 14}s`;
+    s.style.animationDelay = `${Math.random() * 14}s`;
+    const sz = 1.5 + Math.random() * 2.5;
+    s.style.width = s.style.height = `${sz}px`;
+    dust.appendChild(s);
+  }
+</script>
+</body>
+</html>
