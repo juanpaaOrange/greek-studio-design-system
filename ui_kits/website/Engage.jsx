@@ -98,65 +98,7 @@ function Booking() {
   );
 }
 
-/* ──────────────────────  PRIVATE BEAUTY CLUB  ────────────────────── */
-function Loyalty() {
-  const { ArrowUpRight, Check } = Lucide;
-  const [form, setForm] = React.useState({ name: '', email: '', phone: '' });
-  const [done, setDone] = React.useState(false);
-  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+/* La antigua sección "Loyalty" (club genérico con 20%) fue reemplazada por
+   Athena Reserve (Membership.jsx) — se eliminó para evitar incongruencias. */
 
-  const submit = (e) => {
-    e.preventDefault();
-    try {
-      const all = JSON.parse(localStorage.getItem('gs_club') || '[]');
-      all.push({ ...form, at: Date.now() });
-      localStorage.setItem('gs_club', JSON.stringify(all));
-    } catch (_) {}
-    setDone(true);
-  };
-
-  return (
-    <section id="club" className="sec sec--club">
-      <div className="club__inner">
-        <div className="club__left">
-          <Reveal><p className="gs-eyebrow gs-eyebrow--light">Membresía</p></Reveal>
-          <Reveal delay={0.05}><h2 className="club__title">Únete al Club Privado<br />de Belleza Greek Studio</h2></Reveal>
-          <Reveal delay={0.1}>
-            <p className="club__lead">
-              Ofertas exclusivas, reservas con prioridad, lanzamientos de nuevos tratamientos
-              y privilegios especiales de miembro.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15} className="club__reward">
-            <span className="club__pct">20%</span>
-            <span className="club__rewardt">de cortesía<br />en tu próxima visita</span>
-          </Reveal>
-        </div>
-
-        <Reveal delay={0.1} amount={0.2} className="club__formwrap">
-          {!done ? (
-            <form className="club__form" onSubmit={submit}>
-              <Field label="Nombre"><input className="inp" type="text" required value={form.name} onChange={set('name')} placeholder="Tu nombre" /></Field>
-              <Field label="Correo electrónico"><input className="inp" type="email" required value={form.email} onChange={set('email')} placeholder="tu@correo.com" /></Field>
-              <Field label="Teléfono"><input className="inp" type="tel" required value={form.phone} onChange={set('phone')} placeholder="+58 ..." /></Field>
-              <button className="gs-btn gs-btn--primary club__submit" type="submit">
-                <span>Unirme al Club</span><ArrowUpRight size={17} strokeWidth={1.5} />
-              </button>
-            </form>
-          ) : (
-            <div className="clubsuccess">
-              <span className="booksuccess__check"><Check size={24} strokeWidth={1.6} /></span>
-              <h3 className="clubsuccess__title">Bienvenida al Club Privado de Belleza</h3>
-              <p className="clubsuccess__sub">
-                {form.name ? form.name + ', ' : ''}tu beneficio de miembro del <strong>20%</strong> ha sido activado.
-                Lo enviamos a <strong>{form.email}</strong>.
-              </p>
-            </div>
-          )}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-Object.assign(window, { Booking, Loyalty });
+Object.assign(window, { Booking });
