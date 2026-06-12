@@ -4,12 +4,14 @@ const MAP_SRC = 'https://www.google.com/maps?q=' +
   encodeURIComponent('Av. Universidad, local 9B, Maracaibo, Zulia, Venezuela') + '&output=embed';
 const IG = 'https://instagram.com/greekstudiomcbo';
 const MAPS_LINK = 'https://share.google/z5tx1Mi7S3L0I8682';
+const GS_PHONE = (window.GS_CONFIG && window.GS_CONFIG.phoneDisplay) || '+58 422-018-6946';
+const GS_WA = 'https://wa.me/' + ((window.GS_CONFIG && window.GS_CONFIG.whatsapp) || '584220186946');
 
 function Contact() {
   const { Instagram, Phone, Mail, MapPin, ArrowUpRight, Clock } = Lucide;
   const rows = [
     { icon: MapPin, label: 'Dirección', value: 'Av. Universidad, local 9B · Maracaibo, Estado Zulia, Venezuela', href: MAPS_LINK },
-    { icon: Phone, label: 'Teléfono', value: '+58 0186964', href: 'tel:+580186964' },
+    { icon: Phone, label: 'WhatsApp', value: GS_PHONE, href: GS_WA },
     { icon: Mail, label: 'Correo', value: 'greekstudio.tn@gmail.com', href: 'mailto:greekstudio.tn@gmail.com' },
     { icon: Instagram, label: 'Instagram', value: '@greekstudiomcbo', href: IG },
   ];
@@ -44,7 +46,7 @@ function Contact() {
           </Reveal>
           <Reveal delay={0.3} className="contact__cta">
             <a className="gs-btn gs-btn--primary" href="#reservar"><span>Reservar Cita</span></a>
-            <a className="gs-btn gs-btn--ghost" href="#club"><span>Unirme al Club</span></a>
+            <button className="gs-btn gs-btn--ghost" type="button" onClick={() => window.__openJoin && window.__openJoin(null)}><span>Unirme al Club</span></button>
           </Reveal>
         </div>
 
@@ -68,7 +70,7 @@ function Contact() {
           </a>
           <nav className="foot__links">
             <a href={IG} target="_blank" rel="noopener">Instagram</a>
-            <a href="tel:+580186964">+58 0186964</a>
+            <a href={GS_WA} target="_blank" rel="noopener">{GS_PHONE}</a>
             <a href="mailto:greekstudio.tn@gmail.com">greekstudio.tn@gmail.com</a>
             <a href={MAPS_LINK} target="_blank" rel="noopener">Google Maps</a>
           </nav>

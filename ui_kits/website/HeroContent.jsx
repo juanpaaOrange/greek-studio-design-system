@@ -48,9 +48,8 @@ function HeroContent({ onBook }) {
       </motion.p>
 
       <h1 className="gs-hero__title">
-        <RevealLine delay={0.5}>Experiencia</RevealLine>
-        <RevealLine delay={0.62}>Belleza</RevealLine>
-        <RevealLine delay={0.74}>Redefinida</RevealLine>
+        <RevealLine delay={0.5}>Belleza</RevealLine>
+        <RevealLine delay={0.62}>Redefinida</RevealLine>
       </h1>
 
       <motion.p
@@ -73,8 +72,8 @@ function HeroContent({ onBook }) {
           <span>Reservar Cita</span>
           <ArrowRight size={17} strokeWidth={1.6} />
         </button>
-        <a className="gs-btn gs-btn--ghost" href="#servicios">
-          <span>Explorar Experiencias</span>
+        <a className="gs-btn gs-btn--ghost" href="#athena-reserve">
+          <span>Conoce la Membresía</span>
         </a>
       </motion.div>
     </motion.div>

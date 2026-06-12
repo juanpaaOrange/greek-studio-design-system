@@ -1,0 +1,239 @@
+========================================================================
+PROMPT PARA CLAUDE DESIGN — ACTUALIZAR LA PÁGINA DE GREEK STUDIO
+Agregar: Membresía "ATHENA RESERVE" + Créditos + Lealtad (Greek Rewards) +
+Referidos (Embajadoras Greek) con Generador de Enlace.
+========================================================================
+
+------------------------------------------------------------------------
+0. CONTEXTO Y OBJETIVO
+------------------------------------------------------------------------
+Tengo una página ya diseñada para Greek Studio, un salón de belleza de lujo
+en Maracaibo, Venezuela. Quiero AMPLIARLA, no rehacerla. Mantén intacto el
+diseño, la estética, la tipografía, el header y el footer que ya existen.
+Solo vas a AGREGAR nuevas secciones que se integren de forma natural con el
+estilo actual.
+
+Jerarquía de marca (respétala en todos los textos):
+- Greek Studio = el salón (la marca madre).
+- Athena Reserve = la MEMBRESÍA / el club privado (el nombre del programa).
+- Essentials · Signature · Black = los niveles de la membresía.
+- Greek Rewards = programa de lealtad por visitas.
+- Embajadoras Greek = programa de referidos.
+- Greek Glow = el maquillaje mensual de regalo.
+
+Objetivo: lanzar "Athena Reserve", una membresía mensual (y anual) con
+créditos canjeables, lealtad por visitas, y referidos abiertos a TODOS los
+clientes (sean socios o no).
+
+IMPORTANTE: Esta es la versión MVP. El pago NO es con pasarela automática.
+El cliente elige su plan, paga por Pago Móvil o Binance, y llena un
+formulario. No integres ningún checkout de tarjeta ni Stripe. Los botones
+de "unirme/pagar" deben enlazar a un formulario externo y/o abrir WhatsApp
+(ver sección de ENLACES más abajo).
+
+------------------------------------------------------------------------
+1. REGLAS DE DISEÑO (OBLIGATORIO RESPETAR)
+------------------------------------------------------------------------
+- Paleta: negro cálido / lacado oscuro como base, ORO como acento de lujo,
+  texto en tonos crema/marfil. Estética "club privado", tipo Amalfi/Athena
+  Reserve. Elegante, sobrio, no recargado.
+- Mantén la MISMA tipografía y componentes (botones, espaciados, sombras)
+  que ya usa la página. Las nuevas secciones deben parecer parte del diseño
+  original, no un pegote.
+- Sensación general: lujo accesible, exclusividad, "entrar a un club".
+- 100% responsive (móvil primero — la mayoría entrará desde el celular).
+- Microinteracciones sutiles: hover dorado en botones y cards, transiciones
+  suaves. Nada estridente.
+- Todos los textos en español (Venezuela). Precios en USD ($).
+
+------------------------------------------------------------------------
+2. SECCIONES NUEVAS A AGREGAR (EN ESTE ORDEN)
+------------------------------------------------------------------------
+
+==== SECCIÓN A — "ATHENA RESERVE" (intro de la membresía) ====
+Banner/sección de apertura de la membresía. Tono aspiracional, lujo.
+Título: "Athena Reserve"
+Bajada: "La membresía privada de Greek Studio. La primera de su tipo en
+Maracaibo: paga una cuota al mes, recibe créditos para tus servicios
+favoritos, suma premios por tu constancia y gana por traer a tus amigas."
+Botón principal dorado: "Quiero ser socia" (ancla que baja a los planes).
+
+==== SECCIÓN B — LOS NIVELES (3 cards de membresía + toggle Mensual/Anual) ====
+Tres tarjetas, estilo "pricing", con la card del medio (Signature)
+destacada como "La más elegida".
+
+>>> AGREGA UN TOGGLE / SWITCH arriba de las cards: "Mensual" | "Anual ·
+2 meses gratis". Al cambiarlo, los precios de las 3 cards cambian entre el
+precio mensual y el precio anual (con JS simple). El anual muestra el precio
+del año y una etiqueta "2 meses gratis". <<<
+
+Cada card: nombre del nivel, precio grande (cambia según el toggle),
+créditos/mes, lista de beneficios con check dorado, y botón "Unirme".
+
+NIVEL 1 — ESSENTIALS
+- Mensual: $20 / mes
+- Anual: $200 / año  (etiqueta: "2 meses gratis · ahorras $40")
+Beneficios:
+- 4 créditos al mes para tus servicios
+- Tarjeta digital de socia Athena Reserve
+- Acumulas visitas para Greek Rewards
+- Acceso a Greek Glow a tarifa de socia
+Botón: "Unirme a Essentials"
+
+NIVEL 2 — SIGNATURE  (DESTACADO · "La más elegida")
+- Mensual: $40 / mes
+- Anual: $400 / año  (etiqueta: "2 meses gratis · ahorras $80")
+Beneficios:
+- 9 créditos al mes para tus servicios
+- 1 maquillaje social al mes de regalo (Greek Glow)
+- Tarjeta digital de socia nivel Signature
+- Acumulas visitas para Greek Rewards
+- Beneficios de Embajadoras Greek
+Botón: "Unirme a Signature"
+
+NIVEL 3 — BLACK  (el premium · etiqueta "BLACK" dorada)
+- Mensual: $75 / mes
+- Anual: $750 / año  (etiqueta: "2 meses gratis · ahorras $150")
+Beneficios:
+- 16 créditos al mes para tus servicios
+- 1 maquillaje + peinado de evento al mes
+- Prioridad para glam completo y citas
+- Tarjeta digital de socia nivel Black
+- Todos los beneficios de Embajadoras Greek
+Botón: "Unirme a Black"
+
+Nota pequeña debajo de las cards:
+"Tus créditos se recargan cada mes. En el plan anual pagas 10 meses y
+recibes 12. Puedes cambiar o cancelar tu plan cuando quieras."
+
+==== SECCIÓN C — "¿CÓMO FUNCIONAN LOS CRÉDITOS?" ====
+Mini-explicación visual en 3 pasos o íconos:
+1. Eliges tu nivel y recibes tus créditos cada mes.
+2. Canjeas créditos por los servicios que amas.
+3. Mientras más vienes, más premios desbloqueas.
+
+Tabla/lista de ejemplo "Cuánto cuesta cada servicio en créditos" (editable):
+- Diseño de cejas — 1 crédito
+- Secado / blowout — 1 crédito
+- Hidratación premium — 1 crédito
+- Manicure — 2 créditos
+- Pedicure — 2 créditos
+- Lifting de pestañas — 3 créditos
+- Keratina orgánica — 4 créditos
+
+DOS notas importantes debajo de la tabla (inclúyelas como texto fino):
+- "Tus créditos del mes se usan o se pierden: se renuevan en cero cada ciclo
+  para que siempre tengas tu saldo fresco (te avisamos 5 días antes)."
+- "¿Un servicio cuesta más créditos de los que tienes? Pagas solo la
+  diferencia a precio de socia. Nunca te quedas sin tu cita."
+
+==== SECCIÓN D — "GREEK REWARDS · El Camino del Socio" ====
+Programa de lealtad por visitas. Aclara que aplica a TODOS: socios y no
+socios. Preséntalo como una línea de tiempo / escalera visual (timeline
+vertical en móvil, horizontal en desktop) con 4 hitos:
+
+5 visitas  → Diseño de cejas o hidratación premium de regalo
+10 visitas → Keratina orgánica gratis
+15 visitas → Lifting de pestañas o laminado de cejas
+20 visitas → Sesión "Greek Signature" (glam completo) o 1 mes de membresía
+
+Frase destacada (estilo cita dorada):
+"La fidelidad, por primera vez en Maracaibo, tiene premio —y el premio te
+trae de vuelta."
+Nota: "Cada visita suma. El ciclo se reinicia tras el hito de 20 visitas."
+
+==== SECCIÓN E — "EMBAJADORAS GREEK · Referidos" (LA CLAVE) ====
+Programa de referidos ABIERTO A TODOS (seas socia o no). Mensaje central:
+"Cuando una amiga te recomienda, vale más que cualquier publicidad. Por eso
+en Greek, recomendar tiene premio para las dos."
+
+Doble incentivo en 3 bloques/cards:
+- LA INVITADA recibe: 25% de descuento en su primer servicio (o un servicio
+  cortesía: diseño de cejas o secado).
+- TÚ (quien invita) recibes: 1 crédito extra si eres socia, o un servicio de
+  bajo costo (cejas, secado o hidratación) por cada invitada que asiste.
+- BONO EMBAJADORA: trae 3 invitadas que se vuelvan socias y ganas 1 MES
+  GRATIS o una keratina. Premia a quien evangeliza.
+
+>>> COMPONENTE INTERACTIVO DESTACADO: "GENERA TU ENLACE DE EMBAJADORA" <<<
+Construye un widget 100% del lado del cliente (solo HTML/CSS/JS, SIN backend,
+SIN base de datos). Funcionamiento:
+
+1. Un campo de texto: "Escribe tu nombre" (ej. Isabella).
+2. Un botón dorado: "Generar mi enlace".
+3. Al hacer clic, en JavaScript:
+   a. Tomar el nombre, limpiarlo (sin espacios ni acentos, minúsculas) para
+      crear un código de embajadora, ej: "isabella".
+   b. Construir un enlace de referido con la URL actual de la página +
+      parámetro ref, ej:  https://[URL-DE-MI-PAGINA]/?ref=isabella
+   c. Mostrar ese enlace en una cajita elegante con botón "Copiar enlace".
+   d. Mostrar también un botón verde "Compartir por WhatsApp" que abra:
+      https://wa.me/?text=<mensaje pre-escrito + el enlace de referido>
+      Mensaje sugerido (URL-encoded en el código):
+      "Hola ✨ Te recomiendo Greek Studio y su membresía Athena Reserve, el
+      salón con créditos y premios en Maracaibo. Entra con mi enlace y tienes
+      25% en tu primer servicio: [ENLACE]"
+4. Texto debajo del widget:
+   "Comparte tu enlace con tus amigas. Cuando una entra por él y agenda, las
+   dos ganan. Tu código queda guardado para darte tu premio."
+
+>>> CAPTURA AUTOMÁTICA DEL REFERIDO (importante) <<<
+Cuando alguien ABRE la página con un parámetro ?ref=algo en la URL:
+- En JavaScript, leer el parámetro "ref" de la URL.
+- Guardarlo en una variable y mostrar un banner sutil arriba de la sección
+  de planes: "Entraste recomendada por: [nombre] — tienes 25% en tu primer
+  servicio 💛".
+- MUY IMPORTANTE: cuando esa persona haga clic en cualquier botón "Unirme" o
+  "Quiero ser socia" que la lleve al formulario externo, AÑADE el valor de
+  ref como parámetro a la URL del formulario, para que el formulario capture
+  automáticamente quién la refirió. Ejemplo:
+  https://[URL-DEL-FORMULARIO]?ref=isabella
+  (El formulario tendrá un campo oculto "ref" que recibe ese valor.)
+- Si no hay ref en la URL, los botones llevan al formulario normal sin
+  parámetro.
+
+Esto permite que, sin app ni base de datos, yo sepa exactamente quién
+recomendó a quién con solo mirar las respuestas del formulario en mi Google
+Sheet. Es el corazón del sistema de referidos del MVP.
+
+==== SECCIÓN F — "CÓMO UNIRTE" (flujo de pago en 4 pasos) ====
+4 pasos con íconos, simple y premium:
+1. Elige tu nivel (mensual o anual).
+2. Paga por Pago Móvil o Binance (te mostramos los datos al inscribirte).
+3. Llena un formulario corto con tu comprobante.
+4. Recibe tu tarjeta digital Athena Reserve y ¡bienvenida al club!
+Botón final dorado: "Quiero ser socia" → enlaza al formulario.
+
+==== SECCIÓN G — FAQ corto (acordeón) ====
+- ¿Qué es Athena Reserve? La membresía privada de Greek Studio.
+- ¿Qué son los créditos? Tu saldo mensual para canjear por servicios.
+- ¿Los créditos se acumulan? No, se renuevan cada mes; aprovéchalos a tiempo.
+- ¿Y si un servicio cuesta más créditos de los que tengo? Pagas la diferencia
+  a precio de socia.
+- ¿El programa de referidos es solo para socias? No, es para todos.
+- ¿Cómo pago? Por ahora Pago Móvil o Binance; pronto pago automático.
+- ¿Puedo cancelar cuando quiera? Sí, sin penalidad.
+
+------------------------------------------------------------------------
+3. ENLACES Y DATOS A USAR (PLACEHOLDERS — los reemplazo yo)
+------------------------------------------------------------------------
+- URL del formulario de inscripción: [REEMPLAZAR: link de Tally/Google Forms]
+  (todos los botones "Unirme / Quiero ser socia" llevan aquí, pasando ?ref
+  cuando exista)
+- Número de WhatsApp del salón: [REEMPLAZAR: +58XXXXXXXXXX]
+- Datos de Pago Móvil / Binance: NO los pongas visibles en la landing; se
+  muestran dentro del formulario o se envían por WhatsApp.
+- Deja todos los placeholders marcados con [REEMPLAZAR: ...] para cambiarlos
+  fácil.
+
+------------------------------------------------------------------------
+4. ENTREGABLE
+------------------------------------------------------------------------
+- Integra todo en mi página existente respetando el diseño actual.
+- Código limpio; comenta el JS del toggle Mensual/Anual, del generador de
+  enlace y de la captura de ?ref para que yo entienda cómo editarlo.
+- Todo el JavaScript debe ser autónomo (vanilla JS), sin librerías externas
+  ni backend.
+- Verifica en móvil: toggle de precios, generador de enlace y botones de
+  compartir deben verse y funcionar bien.
+========================================================================

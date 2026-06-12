@@ -36,7 +36,7 @@ const SERVICE_GROUPS = [
 
 const RITUALS = [
   { t: 'Bebida de cortesía', s: 'té premium · café · espumante' },
-  { t: 'Hidratación capilar', s: 'tratamiento profesional sin costo' },
+  { t: 'Hidratación capilar', s: 'solo en el paquete Greek Hair Experience' },
   { t: 'Veloterapia', s: 'ritual exclusivo de manos & pies' },
   { t: 'Mascarilla facial', s: 'purificante para caballeros' },
 ];

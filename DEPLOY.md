@@ -74,6 +74,11 @@ En Vercel → **Settings → Domains** agrega `greekstudiomcbo.com` (o el tuyo).
 
 ## Cosas que querrás revisar antes de publicar
 
+- **Athena Reserve — formulario y WhatsApp**: edita los placeholders en `ui_kits/website/Membership.jsx` (líneas 9–10):
+  - `FORM_URL` → tu link de Tally / Google Forms
+  - `WHATSAPP_NUMBER` → tu número (formato: `58414XXXXXXX`, sin signos)
+  Todos los botones "Unirme" / "Quiero ser socia" y "Generar mi enlace" los usan automáticamente.
+- **Captura de ?ref**: cuando alguien entra a `tudominio.com/?ref=isabella`, la página muestra un banner sutil sobre los planes ("Entraste recomendada por…") y los botones de inscripción agregan `?ref=isabella` al URL del formulario. En el formulario crea un campo OCULTO llamado `ref` para recibir el valor.
 - **Athena** (chat con IA): usa una integración interna de Claude. **En Vercel no funcionará** sin un backend. Para producción, conecta una API key real (puedo ayudarte a implementarlo cuando estés listo).
 - **Reseñas**: son testimoniales de muestra; cámbialas por tus reseñas reales de Google.
 - **Reserva / Club**: los formularios guardan localmente; conecta un servicio (Formspree, Netlify Forms, EmailJS) para recibir los datos.

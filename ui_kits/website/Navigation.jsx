@@ -5,8 +5,8 @@ const { Menu, X } = Lucide;
 const NAV_LINKS = [
   { label: 'Nosotros', href: '#historia' },
   { label: 'Servicios', href: '#servicios' },
-  { label: 'Experiencias', href: '#experiencias' },
-  { label: 'Club', href: '#club' },
+  { label: 'Athena Reserve', href: '#athena-reserve' },
+  { label: 'Rewards', href: '#rewards' },
   { label: 'Contacto', href: '#contacto' },
 ];
 

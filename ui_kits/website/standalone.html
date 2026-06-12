@@ -1,71 +1,97 @@
 <!DOCTYPE html>
 <!-- @dsCard group="UI Kit — Website" name="Luxury Hero — Greek Studio" subtitle="Full-screen Greek-gold hero · scroll-expand gallery" viewport="1440x900" -->
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Greek Studio — El Templo de la Belleza · Salón &amp; Membresía en Maracaibo</title>
-<meta name="description" content="Greek Studio, el club privado de belleza de Maracaibo. Cabello, uñas, mirada y barbería ejecutiva — y Athena Reserve, la primera membresía de belleza premium de la ciudad. Reserva tu experiencia." />
-<link rel="icon" type="image/png" href="assets/symbol-bronze.png" />
-<link rel="apple-touch-icon" href="assets/symbol-gold.png" />
-<meta name="theme-color" content="#F3F1EF" />
-<!-- Open Graph / WhatsApp / Instagram previews -->
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="es_VE" />
-<meta property="og:title" content="Greek Studio — El Templo de la Belleza" />
-<meta property="og:description" content="El club privado de belleza de Maracaibo. Conoce Athena Reserve: créditos mensuales, prioridad de agenda y recompensas por tu lealtad." />
-<meta property="og:image" content="assets/greek-studio-logo-bronze.png" />
-<meta name="twitter:card" content="summary_large_image" />
-<!-- Datos del negocio para Google -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BeautySalon",
-  "name": "Greek Studio Beauty Salon",
-  "alternateName": "Greek Studio — El Templo de la Belleza",
-  "description": "Club privado de belleza en Maracaibo: cabello, uñas, mirada y barbería ejecutiva. Membresía Athena Reserve con créditos mensuales.",
-  "telephone": "+584220186946",
-  "email": "greekstudio.tn@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Av. Universidad, local 9B",
-    "addressLocality": "Maracaibo",
-    "addressRegion": "Zulia",
-    "addressCountry": "VE"
-  },
-  "sameAs": ["https://instagram.com/greekstudiomcbo"],
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  }],
-  "priceRange": "$$"
-}
+<title>Greek Studio — The Temple of Beauty</title>
+
+<!-- ══ Standalone bundle: recursos referenciados desde código JSX ══ -->
+<meta name="ext-resource-dependency" content="assets/symbol-bronze.png" data-resource-id="symbolBronze" />
+<meta name="ext-resource-dependency" content="assets/column-bronze.png" data-resource-id="columnBronze" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-historia.jpg" data-resource-id="photoHistoria" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-signature.jpg" data-resource-id="photoSignature" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-cat-cabello.jpg" data-resource-id="photoCabello" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-cat-manos.jpg" data-resource-id="photoManos" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-cat-mirada.jpg" data-resource-id="photoMirada" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-cat-barberia.jpg" data-resource-id="photoBarberia" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-cat-salon.jpg" data-resource-id="photoSalon" />
+<meta name="ext-resource-dependency" content="assets/photos/gs-cat-antes.jpg" data-resource-id="photoAntes" />
+
+<template id="__bundler_thumbnail" data-bg-color="#F3F1EF">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F3F1EF"/>
+    <g stroke="#A8845F" stroke-width="10" fill="none" stroke-linecap="round">
+      <!-- capitel: volutas -->
+      <circle cx="520" cy="300" r="38"/>
+      <circle cx="680" cy="300" r="38"/>
+      <path d="M558 300 H642"/>
+      <path d="M470 248 H730"/>
+      <!-- fuste -->
+      <path d="M540 358 V520 M600 358 V520 M660 358 V520"/>
+      <path d="M500 358 H700"/>
+      <path d="M480 560 H720" stroke-width="12"/>
+    </g>
+    <text x="600" y="648" text-anchor="middle" font-family="Georgia, serif" font-size="54" letter-spacing="22" fill="#2E2B28">GREEK STUDIO</text>
+  </svg>
+</template>
+
+<script>
+  /* ══ Shim standalone: remapea rutas de assets (definidas en código JSX)
+     hacia los blobs inline de window.__resources. Se instala antes de React. ══ */
+  (function () {
+    var MAP = {
+      'assets/symbol-bronze.png': 'symbolBronze',
+      'assets/column-bronze.png': 'columnBronze',
+      'assets/photos/gs-historia.jpg': 'photoHistoria',
+      'assets/photos/gs-signature.jpg': 'photoSignature',
+      'assets/photos/gs-cat-cabello.jpg': 'photoCabello',
+      'assets/photos/gs-cat-manos.jpg': 'photoManos',
+      'assets/photos/gs-cat-mirada.jpg': 'photoMirada',
+      'assets/photos/gs-cat-barberia.jpg': 'photoBarberia',
+      'assets/photos/gs-cat-salon.jpg': 'photoSalon',
+      'assets/photos/gs-cat-antes.jpg': 'photoAntes'
+    };
+    function resolve(v) {
+      if (typeof v !== 'string') return v;
+      var id = MAP[v];
+      var res = window.__resources || {};
+      return (id && res[id]) ? res[id] : v;
+    }
+    var origSet = Element.prototype.setAttribute;
+    Element.prototype.setAttribute = function (name, value) {
+      if (name === 'src' || name === 'poster' || name === 'href') value = resolve(value);
+      return origSet.call(this, name, value);
+    };
+    try {
+      var d = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+      if (d && d.set) {
+        Object.defineProperty(HTMLImageElement.prototype, 'src', {
+          get: d.get,
+          set: function (v) { d.set.call(this, resolve(v)); },
+          configurable: true
+        });
+      }
+    } catch (e) {}
+    /* Pasada final por si algo se escapó (atributos ya presentes) */
+    document.addEventListener('DOMContentLoaded', function () {
+      var els = document.querySelectorAll('img[src], image-slot[src]');
+      for (var i = 0; i < els.length; i++) {
+        var cur = els[i].getAttribute('src');
+        var fixed = resolve(cur);
+        if (fixed !== cur) els[i].setAttribute('src', fixed);
+      }
+    });
+  })();
 </script>
 <link rel="stylesheet" href="colors_and_type.css" />
 <link rel="stylesheet" href="sections.css" />
 <link rel="stylesheet" href="membership.css" />
 
-<!-- ══════════ CONFIGURACIÓN DEL NEGOCIO — edita SOLO aquí ══════════ -->
-<script>
-  window.GS_CONFIG = {
-    /* Número de WhatsApp en formato internacional, solo dígitos (58 + número sin el 0) */
-    whatsapp: '584220186946',
-    /* Cómo se muestra el número en pantalla */
-    phoneDisplay: '+58 422-018-6946',
-    instagram: 'https://instagram.com/greekstudiomcbo',
-    email: 'greekstudio.tn@gmail.com',
-    /* Datos de pago que se muestran al inscribirse a la membresía */
-    pagoMovil: 'Pago Móvil (te enviamos los datos por WhatsApp)',
-    binance: 'Binance Pay (te enviamos los datos por WhatsApp)'
-  };
-</script>
-
 <script>window.process = window.process || { env: { NODE_ENV: 'production' } };</script>
 <!-- React + ReactDOM (pinned UMD, single shared instance) -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <!-- framer-motion (UMD) -->
 <script src="https://unpkg.com/framer-motion@11.18.2/dist/framer-motion.js" crossorigin="anonymous"></script>
 <script>
@@ -590,9 +616,9 @@
       const [menuOpen, setMenuOpen] = useState(false);
 
       useEffect(() => {
-        const t1 = setTimeout(() => setLoaded(true), 1300);
-        const t2 = setTimeout(() => setReady(true), 1500);
-        const t3 = setTimeout(() => setGone(true), 2200);
+        const t1 = setTimeout(() => setLoaded(true), 2200);
+        const t2 = setTimeout(() => setReady(true), 2500);
+        const t3 = setTimeout(() => setGone(true), 3300);
         return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
       }, []);
 
@@ -642,8 +668,6 @@
           <Contact />
 
           <Athena />
-          <JoinModal />
-          <MobileCTABar />
           <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
         </React.Fragment>
       );
